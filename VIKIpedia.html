@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сводка</title>
+    <style>
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #202122;
+            background-color: #f6f6f6;
+        }
+
+        body, p, li, div {
+            font-size: 18px; 
+        }
+
+        a {
+            text-decoration: none;
+            color: #3366cc;
+            cursor: default; 
+        }
+
+        /* --- ПЕРВАЯ СТРОЧКА --- */
+        .header-top {
+            background-color: #ffffff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            color: #54595d;
+            margin-right: 10px;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: row; 
+            align-items: center; 
+            gap: 10px;
+        }
+
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .logo-subtext {
+            font-size: 11px;
+            color: #54595d;
+            line-height: 1.2;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            padding: 2px;
+            background: #fff;
+            width: 400px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background: #f8f9fa;
+            border: none;
+            border-left: 1px solid #a2a9b1;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+        }
+
+        /* --- ВТОРАЯ СТРОЧКА --- */
+        .header-nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 0 20px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end; 
+            height: 40px; 
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .nav-item {
+            color: #3366cc;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            height: 100%;
+            box-sizing: border-box;
+            border-bottom: 2px solid transparent; 
+        }
+
+        .nav-item.active {
+            color: #202122; 
+            font-weight: bold; 
+            border-bottom: 2px solid #3366cc; 
+        }
+
+        /* --- ТРЕТЬЯ СТРОЧКА --- */
+        .welcome-banner {
+            background-color: #ffffff;
+            border: 1px solid #a2a9b1;
+            margin: 20px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .welcome-banner h1 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 28px;
+            margin: 0 0 5px 0;
+            font-weight: normal;
+        }
+
+        .welcome-banner p {
+            margin: 0;
+            color: #54595d;
+            font-size: 14px;
+        }
+
+        /* --- ОСНОВНОЙ КОНТЕНТ --- */
+        .main-content {
+            display: flex;
+            margin: 0 20px 20px 20px;
+            gap: 20px;
+        }
+
+        .article-column {
+            flex: 3;
+            background: #ffffff;
+            border: 1px solid #a2a9b1;
+            padding: 20px;
+        }
+
+        .sidebar-column {
+            flex: 1;
+            background: #ffffff;
+            border: 1px solid #a2a9b1;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        .article-pretitle {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 13px;
+            color: #54595d;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .article-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 32px;
+            margin-top: 0;
+            margin-bottom: 5px; 
+            font-weight: normal;
+        }
+
+        .article-subtitle {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            color: #54595d;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #a2a9b1; 
+        }
+
+        /* --- ТЕКСТ СТАТЬИ --- */
+        .article-text {
+            font-family: Calibri, Arial, sans-serif;
+            line-height: 1.6;
+            font-size: 19px; 
+        }
+
+        /* Стили для картинок (обтекание справа) */
+        .figure-box {
+            float: right; 
+            clear: right;
+            margin: 10px 0 10px 20px;
+            max-width: 250px;
+        }
+
+        .figure-box img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #c8ccd1;
+        }
+
+        .fig-caption {
+            font-family: Calibri, sans-serif;
+            font-size: 13px;
+            color: #54595d;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* Стили для трех картинок в ряд */
+        .three-images-row {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            margin: 20px 0;
+            width: 100%;
+            clear: both; 
+        }
+
+        .row-figure {
+            flex: 1; 
+            text-align: center;
+        }
+
+        .row-figure img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #c8ccd1;
+        }
+
+        /* Списки в сайдбаре */
+        .sidebar-column h3 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+        }
+
+        .sidebar-column ul {
+            padding-left: 20px;
+        }
+
+        .sidebar-column li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ПЕРВАЯ СТРОЧКА -->
+    <div class="header-top">
+        <div class="header-left">
+            <div class="hamburger">☰</div>
+            <div class="logo-area">
+                <img src="logo82_20261027183102.jpg" width="50" height="50" alt="Логотип">
+                <div class="logo-text-wrapper">
+                    <div class="logo-text">Сводка</div>
+                    <div class="logo-subtext">свободный источник</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Искать в Сводке">
+            <button>Найти</button>
+        </div>
+
+        <div class="header-right">
+            <span class="nav-item">Пожертвовать</span>
+            <span class="nav-item">Создать учетную запись</span>
+            <span class="nav-item">Войти</span>
+        </div>
+    </div>
+
+    <!-- ВТОРАЯ СТРОЧКА -->
+    <div class="header-nav">
+        <div class="nav-left">
+            <span class="nav-item active">Заглавная</span>
+            <span class="nav-item">Обсуждение</span>
+        </div>
+        <div class="nav-right">
+            <span class="nav-item">Читать</span>
+            <span class="nav-item">История</span>
+        </div>
+    </div>
+
+    <!-- ТРЕТЬЯ СТРОЧКА (Приветствие) -->
+    <div class="welcome-banner">
+        <h1>Добро пожаловать в Сводку,</h1>
+        <p>свободный источник, который может редактировать каждый.</p>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="main-content">
+        
+        <!-- ЛЕВАЯ КОЛОНКА (Статья) -->
+        <div class="article-column">
+            
+            <!-- Надзаголовок -->
+            <div class="article-pretitle">Официальный вестник</div>
+            
+            <!-- Заголовок статьи -->
+            <h2 class="article-title">О текущем состоянии среды и мерах реагирования</h2>
+            
+            <!-- Подзаголовок с автором -->
+            <div class="article-subtitle">Автор: редактор государственного вестника (публикуется с сокращениями)</div>
+            
+            <div class="article-text">
+                <!-- Картинка 1: рис. 17 -->
+                <div class="figure-box">
+                    <img src="ris17.jpg" alt="рис. 17">
+                    <div class="fig-caption">рис. 17</div>
+                </div>
+                
+                <p>Настоящая публикация подготовлена в соответствии с регламентом информирования населения о состоянии общественной среды. Ряд данных не подлежит раскрытию в открытом доступе в связи с их отношением к категории ограниченного распространения. Тем не менее редакция считает необходимым обозначить общие контуры ситуации, не выходя за рамки допустимого.</p>
+                <p>Согласно сводкам, поступающим из региональных центров, наблюдаются устойчивые отклонения в функционировании базовых социальных институтов. Отклонения носят не локальный, а системный характер: фиксируются перебои в координации между ведомствами, снижение предсказуемости административных процедур, рост числа незапланированных изменений в нормативных актах. Совокупность указанных факторов создаёт эффект, который в закрытых отчётах описывается термином «средовая нестабильность». Редакция не уполномочена приводить полные формулировки и статистику; отметим лишь, что динамика неблагоприятна.</p>
+
+                <!-- Картинка 2: рис. 18 -->
+                <div class="figure-box">
+                    <img src="ris18.jpg" alt="рис. 18">
+                    <div class="fig-caption">рис. 18</div>
+                </div>
+                <p>Отдельно следует указать на участившиеся случаи утраты контроля над информационными потоками. Распространение сведений, не прошедших установленную проверку, приобретает стихийный характер. В ряде регионов зафиксированы инциденты, классифицируемые как «аномальные»; их описание в открытых источниках ограничено. Причины инцидентов устанавливаются. Редакция обращает внимание, что речь идёт не о природных явлениях, а о явлениях общественного порядка — и именно это обстоятельство не позволяет раскрыть их содержание в полном объёме.</p>
+                
+                <!-- Картинка 3: рис. 16 -->
+                <div class="figure-box">
+                    <img src="ris16.jpg" alt="рис. 16">
+                    <div class="fig-caption">рис. 16</div>
+                </div>
+                <p>В связи с вышеизложенным профильными структурами инициирован ряд мероприятий. Часть из них носит поисковый характер: осуществляется розыск объектов, обладающих повышенной значимостью для стабилизации обстановки. Указанные объекты в служебной переписке обозначаются как «фрагменты» или «осколки»; их происхождение и свойства не подлежат разглашению. Редакция подтверждает лишь сам факт поисковых работ и их приоритетность.</p>
+
+                <!-- Картинка 4: рис. 26 -->
+                <div class="figure-box">
+                    <img src="ris26.jpg" alt="рис. 26">
+                    <div class="fig-caption">рис. 26</div>
+                </div>
+                <p>Отдельно отмечается деятельность неких координационных объединений, чьи полномочия и структура не раскрываются. Взаимодействие с ними осуществляется в рамках установленного порядка. Редакция не располагает сведениями, подлежащими публикации, однако считает допустимым указать: ряд решений, принятых в последнее время, связан с необходимостью сохранить преемственность в условиях нарастающей неопределённости.</p>
+
+                <p>Редакция напоминает: публикация носит ознакомительный характер и не является исчерпывающей. Полные сведения предоставляются уполномоченным органам по запросу. Ответственность за интерпретацию изложенного лежит на читателе.</p>
+
+                <!-- БЛОК С ТРЕМЯ КАРТИНКАМИ В РЯД -->
+                <div class="three-images-row">
+                    
+                    <!-- Картинка 5: рис. 13 -->
+                    <div class="row-figure">
+                        <img src="ris13.jpg" alt="рис. 13">
+                        <div class="fig-caption">рис. 13</div>
+                    </div>
+
+                    <!-- Картинка 6: рис. 15 -->
+                    <div class="row-figure">
+                        <img src="ris15.jpg" alt="рис. 15">
+                        <div class="fig-caption">рис. 15</div>
+                    </div>
+
+                    <!-- Картинка 7: рис. 6 -->
+                    <div class="row-figure">
+                        <img src="ris6.jpg" alt="рис. 6">
+                        <div class="fig-caption">рис. 6</div>
+                    </div>
+
+                </div>
+
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+
+       <!-- ПРАВАЯ КОЛОНКА (Сайдбар) -->
+        <div class="sidebar-column">
+            <h3>Знаете ли вы?</h3>
+            <ul>
+                <li>Что я нихуя не понимаю блять</li>
+                <li>оаоавоаовоаэ</li>
+                <li>бля че я несу</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
